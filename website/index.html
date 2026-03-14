@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Planner - Download</title>
+  <title>Student Planner - The Ultimate School Toolkit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: #0f172a;
+      background: #0a0e1a;
       color: #e2e8f0;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* NAV */
@@ -20,9 +21,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      max-width: 1100px;
+      padding: 18px 40px;
+      max-width: 1200px;
       margin: 0 auto;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,14,26,0.85);
+      backdrop-filter: blur(16px);
     }
     .logo {
       display: flex;
@@ -30,15 +36,15 @@
       gap: 10px;
       text-decoration: none;
       color: #fff;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 18px;
     }
     .logo-box {
-      width: 34px; height: 34px;
+      width: 36px; height: 36px;
       background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 800; color: #fff;
+      font-size: 14px; font-weight: 900; color: #fff;
     }
     .nav-right {
       display: flex;
@@ -58,193 +64,686 @@
       align-items: center;
       gap: 6px;
     }
+    .nav-cta {
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .nav-cta:hover { opacity: 0.9; }
 
     /* HERO */
     .hero {
       text-align: center;
-      padding: 80px 24px 40px;
-      max-width: 700px;
+      padding: 100px 24px 50px;
+      max-width: 800px;
       margin: 0 auto;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      padding: 6px 18px;
+      border-radius: 24px;
+      font-size: 13px;
+      color: #93c5fd;
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
     .hero h1 {
-      font-size: 48px;
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      letter-spacing: -1px;
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
     }
     .hero h1 span {
-      background: linear-gradient(135deg, #3b82f6, #a78bfa);
+      background: linear-gradient(135deg, #3b82f6, #a78bfa, #f472b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .hero p {
-      font-size: 18px;
+      font-size: 19px;
       color: #94a3b8;
-      max-width: 500px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto 16px;
+      line-height: 1.7;
     }
 
-    /* DOWNLOAD BOX */
-    .download-box {
-      max-width: 520px;
-      margin: 0 auto 60px;
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 20px;
-      padding: 40px 36px;
+    /* CTA BUTTONS */
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin: 40px auto 16px;
+      flex-wrap: wrap;
     }
-    .download-btn {
+    .cta-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      width: 100%;
-      padding: 20px;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #fff;
-      text-decoration: none;
+      gap: 12px;
+      padding: 18px 40px;
       border-radius: 14px;
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 700;
-      transition: all 0.2s;
-      box-shadow: 0 4px 24px rgba(34, 197, 94, 0.3);
-      margin-bottom: 10px;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
     }
-    .download-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(34, 197, 94, 0.4);
+    .cta-btn:hover { transform: translateY(-3px); }
+    .cta-btn:active { transform: scale(0.98); }
+    .cta-primary {
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: #fff;
+      box-shadow: 0 4px 30px rgba(59,130,246,0.4);
     }
-    .download-btn:active { transform: scale(0.98); }
-    .download-btn svg { flex-shrink: 0; }
-    .download-sub {
+    .cta-primary:hover { box-shadow: 0 8px 40px rgba(59,130,246,0.5); }
+    .cta-secondary {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid #334155;
+    }
+    .cta-secondary:hover { border-color: #475569; background: #253346; }
+    .cta-sub {
       text-align: center;
       font-size: 13px;
+      color: #475569;
+    }
+    .cta-sub span { margin: 0 8px; }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 56px;
+      padding: 50px 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .num {
+      font-size: 36px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #3b82f6, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-item .label {
+      font-size: 13px;
       color: #64748b;
-      margin-bottom: 32px;
+      margin-top: 4px;
     }
 
-    /* STEPS */
-    .steps-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+    /* SECTION HELPERS */
+    .section-title {
       text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #fff;
+      letter-spacing: -1px;
     }
-    .step {
+    .section-subtitle {
+      text-align: center;
+      font-size: 16px;
+      color: #64748b;
+      margin-bottom: 48px;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* ===== SETUP WIZARD WALKTHROUGH ===== */
+    .wizard-section {
+      max-width: 1000px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+    }
+    .wizard-steps {
       display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
     }
-    .step:last-child { margin-bottom: 0; }
-    .step-num {
-      width: 30px; height: 30px;
-      min-width: 30px;
+    .wizard-step {
+      min-width: 280px;
+      flex: 1;
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .wizard-step:hover { transform: translateY(-4px); }
+    .wizard-step-header {
+      background: linear-gradient(135deg, #1e293b, #111827);
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .wizard-step-num {
+      width: 32px; height: 32px;
       background: linear-gradient(135deg, #3b82f6, #8b5cf6);
       color: #fff;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-weight: 700;
       font-size: 14px;
+      margin-bottom: 12px;
     }
-    .step-text {
-      padding-top: 4px;
-    }
-    .step-text strong {
-      display: block;
-      font-size: 15px;
+    .wizard-step-header h3 {
+      font-size: 16px;
+      font-weight: 700;
       color: #e2e8f0;
-      margin-bottom: 2px;
     }
-    .step-text p {
+    .wizard-step-body {
+      padding: 20px 24px;
+    }
+    .wizard-mockup {
+      background: #0a0e1a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .wizard-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #e2e8f0;
       font-size: 13px;
+      margin-bottom: 8px;
+      font-family: inherit;
+    }
+    .wizard-label {
+      font-size: 11px;
       color: #64748b;
-      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .wizard-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .wizard-chip {
+      padding: 6px 12px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 8px;
+      font-size: 11px;
+      color: #93c5fd;
+    }
+    .wizard-chip.active {
+      background: #3b82f6;
+      color: #fff;
+      border-color: #3b82f6;
+    }
+    .wizard-step-body p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .wizard-theme-row {
+      display: flex;
+      gap: 10px;
+    }
+    .wizard-theme-box {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      border: 2px solid transparent;
+    }
+    .wizard-theme-dark {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-color: #3b82f6;
+    }
+    .wizard-theme-light {
+      background: #f1f5f9;
+      color: #1e293b;
+      border-color: #334155;
     }
 
-    /* FEATURES STRIP */
-    .features-strip {
-      max-width: 900px;
-      margin: 0 auto 60px;
+    /* ===== FEATURE DEEP DIVES ===== */
+    .features-deep {
+      max-width: 1100px;
+      margin: 0 auto 80px;
       padding: 0 24px;
     }
-    .features-strip h2 {
-      text-align: center;
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 32px;
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+    .feature-info h3 {
+      font-size: 28px;
+      font-weight: 800;
       color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .feature-info .feat-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .feat-badge-core {
+      background: rgba(59,130,246,0.15);
+      color: #60a5fa;
+    }
+    .feat-badge-ai {
+      background: rgba(251,191,36,0.15);
+      color: #fbbf24;
+    }
+    .feat-badge-new {
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+    }
+    .feature-info p {
+      font-size: 15px;
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .feature-bullets {
+      list-style: none;
+    }
+    .feature-bullets li {
+      font-size: 14px;
+      color: #cbd5e1;
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.5;
+    }
+    .feature-bullets li .bullet-icon {
+      width: 24px; height: 24px;
+      background: rgba(59,130,246,0.12);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-top: 1px;
+    }
+    .feature-visual {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-visual::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at center, rgba(59,130,246,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .fv-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .fv-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+    .fv-desc {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+    .fv-mock-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .fv-mock-item {
+      flex: 1;
+      background: #0a0e1a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .fv-mock-item .val {
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .fv-mock-item .lbl {
+      font-size: 10px;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .fv-bar {
+      width: 100%;
+      height: 8px;
+      background: #1e293b;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+    .fv-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+    .fv-hw-item {
+      background: #0a0e1a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .fv-hw-check {
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      border: 2px solid #334155;
+      flex-shrink: 0;
+    }
+    .fv-hw-check.done {
+      background: #22c55e;
+      border-color: #22c55e;
+    }
+    .fv-hw-text {
+      flex: 1;
+    }
+    .fv-hw-text h5 {
+      font-size: 13px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .fv-hw-text span {
+      font-size: 11px;
+      color: #64748b;
+    }
+    .fv-hw-tag {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .fv-timer-display {
+      font-size: 56px;
+      font-weight: 900;
+      color: #3b82f6;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      margin: 16px 0;
+    }
+    .fv-timer-presets {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+    .fv-timer-preset {
+      padding: 6px 14px;
+      background: #1e293b;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .fv-timer-preset.active {
+      background: #3b82f6;
+      color: #fff;
+    }
+    .fv-card-flip {
+      background: linear-gradient(135deg, #1e293b, #111827);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .fv-card-label {
+      font-size: 11px;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .fv-card-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+    .fv-card-hint {
+      font-size: 12px;
+      color: #475569;
+      margin-top: 12px;
+    }
+    .fv-ai-chat {
+      background: #0a0e1a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .fv-ai-msg {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      max-width: 85%;
+    }
+    .fv-ai-msg.user {
+      background: #3b82f6;
+      color: #fff;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+    .fv-ai-msg.bot {
+      background: #1e293b;
+      color: #e2e8f0;
+      border-bottom-left-radius: 4px;
+    }
+
+    /* ===== STUDY TOOLS HUB ===== */
+    .tools-section {
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .tool-card {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .tool-card:hover {
+      transform: translateY(-2px);
+      border-color: #334155;
+    }
+    .tool-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .tool-card-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+    .tool-card-info p {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* ===== ALL FEATURES GRID ===== */
+    .features-grid-section {
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
     }
     .feat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
-    .feat {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 20px;
+    .feat-mini {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 22px 18px;
+      text-align: center;
       transition: transform 0.2s;
     }
-    .feat:hover { transform: translateY(-2px); }
-    .feat-icon {
-      font-size: 24px;
+    .feat-mini:hover { transform: translateY(-3px); }
+    .feat-mini-icon {
+      font-size: 32px;
       margin-bottom: 10px;
     }
-    .feat h3 {
-      font-size: 15px;
-      font-weight: 600;
+    .feat-mini h4 {
+      font-size: 13px;
+      font-weight: 700;
       color: #e2e8f0;
       margin-bottom: 4px;
     }
-    .feat p {
-      font-size: 13px;
+    .feat-mini p {
+      font-size: 11px;
       color: #64748b;
       line-height: 1.5;
     }
 
-    /* STUDY TOOLS */
-    .tools-row {
-      max-width: 900px;
-      margin: 0 auto 60px;
+    /* ===== COMPARISON ===== */
+    .comparison-section {
+      max-width: 700px;
+      margin: 0 auto 80px;
       padding: 0 24px;
-      text-align: center;
     }
-    .tools-row h2 {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      color: #fff;
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #111827;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #1e293b;
     }
-    .tools-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    .tool-chip {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 10px 18px;
+    .comparison-table th,
+    .comparison-table td {
+      padding: 14px 20px;
+      text-align: left;
       font-size: 14px;
-      font-weight: 600;
-      color: #e2e8f0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      border-bottom: 1px solid #1e293b;
     }
-    .tool-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
+    .comparison-table th {
+      background: #0a0e1a;
+      font-weight: 600;
+      color: #94a3b8;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .check { color: #22c55e; font-weight: 700; }
+    .cross { color: #475569; }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .faq-item {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .faq-item:hover { border-color: #334155; }
+    .faq-item h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+    .faq-item p {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    /* ===== BOTTOM CTA ===== */
+    .cta-bottom {
+      text-align: center;
+      padding: 80px 24px;
+      background: linear-gradient(180deg, transparent 0%, rgba(59,130,246,0.06) 100%);
+      position: relative;
+    }
+    .cta-bottom h2 {
+      font-size: 40px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+    .cta-bottom p {
+      font-size: 17px;
+      color: #94a3b8;
+      margin-bottom: 36px;
     }
 
     /* FOOTER */
@@ -263,26 +762,32 @@
     footer a:hover { color: #94a3b8; }
 
     /* RESPONSIVE */
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 32px; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 36px; }
       .hero p { font-size: 16px; }
-      nav { padding: 16px 20px; }
-      .nav-right a:not(.gh-link) { display: none; }
-      .download-box { margin-left: 16px; margin-right: 16px; padding: 28px 20px; }
-      .download-btn { font-size: 17px; padding: 18px; }
+      nav { padding: 14px 20px; }
+      .nav-right a:not(.gh-link):not(.nav-cta) { display: none; }
+      .cta-row { flex-direction: column; align-items: center; }
+      .cta-btn { width: 100%; max-width: 340px; }
+      .stats-bar { gap: 24px; flex-wrap: wrap; }
+      .stat-item .num { font-size: 28px; }
+      .wizard-steps { flex-direction: column; }
+      .wizard-step { min-width: unset; }
+      .feature-row { grid-template-columns: 1fr; gap: 24px; }
+      .feature-row.reverse { direction: ltr; }
+      .feat-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: 1fr 1fr; }
+      .section-title { font-size: 28px; }
     }
 
     /* ANIMATIONS */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .hero, .download-box, .features-strip, .tools-row {
-      animation: fadeUp 0.5s ease-out both;
+    .hero, .wizard-section, .features-deep, .tools-section, .features-grid-section, .comparison-section, .faq-section, .cta-bottom {
+      animation: fadeUp 0.6s ease-out both;
     }
-    .download-box { animation-delay: 0.1s; }
-    .features-strip { animation-delay: 0.2s; }
-    .tools-row { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
@@ -294,126 +799,557 @@
     </a>
     <div class="nav-right">
       <a href="#features">Features</a>
+      <a href="#wizard">Setup</a>
+      <a href="#tools">Study Tools</a>
+      <a href="#faq">FAQ</a>
       <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank" class="gh-link">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         GitHub
       </a>
+      <a href="app.html" class="nav-cta">Launch App</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <h1>The <span>Ultimate School Toolkit</span> for Students</h1>
-    <p>Homework tracker, grade calculator, study timer, flashcards, AI tutor, and more. All in one free app.</p>
+    <div class="hero-badge">
+      <div class="dot"></div>
+      Free &amp; Open Source - No Account Required
+    </div>
+    <h1>Your <span>All-in-One School Toolkit</span></h1>
+    <p>11 built-in tools to track homework, calculate your GPA, study with flashcards, manage your schedule, and get AI tutoring help. Everything a student needs in one app.</p>
   </section>
 
-  <!-- DOWNLOAD -->
-  <div class="download-box">
-    <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank" class="download-btn">
-      <svg height="28" width="28" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      Get it on GitHub
+  <!-- CTA BUTTONS -->
+  <div class="cta-row">
+    <a href="app.html" class="cta-btn cta-primary">
+      <svg height="22" width="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      Use on Web - Free
     </a>
-    <p class="download-sub">Free &bull; No account needed &bull; Works offline</p>
+    <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank" class="cta-btn cta-secondary">
+      <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      View on GitHub
+    </a>
+  </div>
+  <p class="cta-sub">No signup <span>&bull;</span> No payment <span>&bull;</span> Works offline <span>&bull;</span> Your data stays on your device</p>
 
-    <div class="steps-title">Setup in 3 steps</div>
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-text">
-        <strong>Go to GitHub</strong>
-        <p>Click the green button above to open the GitHub page.</p>
-      </div>
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="num">11+</div>
+      <div class="label">Built-in Tools</div>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-text">
-        <strong>Download the ZIP</strong>
-        <p>Click the green <b>"Code"</b> button, then <b>"Download ZIP"</b>. Unzip it on your computer.</p>
-      </div>
+    <div class="stat-item">
+      <div class="num">100%</div>
+      <div class="label">Free Forever</div>
     </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-text">
-        <strong>Open "Install &amp; Run"</strong>
-        <p>Open the folder and double-click <b>"Install &amp; Run"</b>. The app opens automatically!</p>
-      </div>
+    <div class="stat-item">
+      <div class="num">0</div>
+      <div class="label">Ads or Tracking</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">AI</div>
+      <div class="label">Powered Tutor</div>
     </div>
   </div>
 
-  <!-- FEATURES -->
-  <section class="features-strip" id="features">
-    <h2>Everything in one app</h2>
-    <div class="feat-grid">
-      <div class="feat">
-        <div class="feat-icon">&#9998;</div>
-        <h3>Homework Tracker</h3>
-        <p>Due dates, priorities, subjects. Never miss a deadline.</p>
+  <!-- ===== SETUP WIZARD WALKTHROUGH ===== -->
+  <section class="wizard-section" id="wizard">
+    <h2 class="section-title">Ready in 30 Seconds</h2>
+    <p class="section-subtitle">The setup wizard walks you through everything when you first open the app. No confusion, no manuals.</p>
+
+    <div class="wizard-steps">
+      <!-- Step 1 -->
+      <div class="wizard-step">
+        <div class="wizard-step-header">
+          <div class="wizard-step-num">1</div>
+          <h3>Enter Your Name</h3>
+        </div>
+        <div class="wizard-step-body">
+          <div class="wizard-mockup">
+            <div class="wizard-label">Your Name</div>
+            <div class="wizard-input">Alex Johnson</div>
+            <div class="wizard-label">Grade Level</div>
+            <div class="wizard-chip-row">
+              <div class="wizard-chip">9th</div>
+              <div class="wizard-chip active">10th</div>
+              <div class="wizard-chip">11th</div>
+              <div class="wizard-chip">12th</div>
+            </div>
+          </div>
+          <p>The app personalizes your dashboard with your name and sets up grade-appropriate defaults.</p>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">&#9733;</div>
-        <h3>Grade Tracker</h3>
-        <p>Track tests, quizzes, projects. See your letter grade instantly.</p>
+
+      <!-- Step 2 -->
+      <div class="wizard-step">
+        <div class="wizard-step-header">
+          <div class="wizard-step-num">2</div>
+          <h3>Add Your Classes</h3>
+        </div>
+        <div class="wizard-step-body">
+          <div class="wizard-mockup">
+            <div class="wizard-label">Your Classes</div>
+            <div class="wizard-chip-row">
+              <div class="wizard-chip active">Math</div>
+              <div class="wizard-chip active">English</div>
+              <div class="wizard-chip active">Science</div>
+              <div class="wizard-chip">History</div>
+              <div class="wizard-chip">Art</div>
+              <div class="wizard-chip">+ Custom</div>
+            </div>
+          </div>
+          <p>Pick from common classes or type your own. These show up everywhere: homework, grades, schedule, and GPA.</p>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">&#127919;</div>
-        <h3>GPA Calculator</h3>
-        <p>Auto-calculates your GPA. See what you need to hit your goal.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">&#128197;</div>
-        <h3>Class Schedule</h3>
-        <p>Weekly view with classes, rooms, and times.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">&#9201;</div>
-        <h3>Study Timer</h3>
-        <p>Pomodoro timer with session tracking.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">&#127183;</div>
-        <h3>Flashcards</h3>
-        <p>Create decks, flip cards, shuffle and study.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">&#128221;</div>
-        <h3>Notes</h3>
-        <p>Full editor with auto-save. Organize by subject.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">&#128170;</div>
-        <h3>Exam Countdown</h3>
-        <p>Track upcoming exams with color-coded urgency.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">&#129302;</div>
-        <h3>Claude AI Tutor</h3>
-        <p>Ask questions, get explanations, study help built in.</p>
+
+      <!-- Step 3 -->
+      <div class="wizard-step">
+        <div class="wizard-step-header">
+          <div class="wizard-step-num">3</div>
+          <h3>Pick Your Theme</h3>
+        </div>
+        <div class="wizard-step-body">
+          <div class="wizard-mockup">
+            <div class="wizard-label">Choose Theme</div>
+            <div class="wizard-theme-row">
+              <div class="wizard-theme-box wizard-theme-dark">Dark Mode</div>
+              <div class="wizard-theme-box wizard-theme-light">Light Mode</div>
+            </div>
+          </div>
+          <p>Choose dark or light mode. You can switch anytime from the sidebar. Your preference is saved automatically.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- STUDY TOOLS -->
-  <section class="tools-row">
-    <h2>Built-in links to study tools</h2>
-    <div class="tools-flex">
-      <div class="tool-chip"><div class="tool-dot" style="background:#4257b2"></div> Quizlet</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#14bf96"></div> Khan Academy</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#dd1100"></div> Wolfram Alpha</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#4caf50"></div> Desmos</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#15c39a"></div> Grammarly</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#4285f4"></div> Google Scholar</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#0056d2"></div> Coursera</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#236fa1"></div> Anki</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#f4d03f"></div> SparkNotes</div>
-      <div class="tool-chip"><div class="tool-dot" style="background:#1db954"></div> Spotify Focus</div>
+  <!-- ===== FEATURE DEEP DIVES ===== -->
+  <section class="features-deep" id="features">
+    <h2 class="section-title">What's Inside</h2>
+    <p class="section-subtitle">Here's a detailed look at every tool packed into Student Planner. Each one is designed to save you time and keep you organized.</p>
+
+    <!-- 1. Homework Tracker -->
+    <div class="feature-row">
+      <div class="feature-info">
+        <span class="feat-badge feat-badge-core">Core Tool</span>
+        <h3>Homework Tracker</h3>
+        <p>Never miss a deadline again. Add every assignment with its subject, due date, type, and priority level. See everything organized in one place and filter by what matters.</p>
+        <ul class="feature-bullets">
+          <li><div class="bullet-icon">&#10003;</div> Add assignments with subject, due date, type, and priority</li>
+          <li><div class="bullet-icon">&#10003;</div> Filter by subject, status (pending/completed), or priority</li>
+          <li><div class="bullet-icon">&#10003;</div> Color-coded priority: red for high, orange for medium, green for low</li>
+          <li><div class="bullet-icon">&#10003;</div> Mark assignments complete with one click</li>
+          <li><div class="bullet-icon">&#10003;</div> Dashboard shows upcoming deadlines at a glance</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-icon">&#9998;</div>
+        <div class="fv-title">Your Assignments</div>
+        <div class="fv-desc">Organized by due date with priority colors</div>
+        <div class="fv-hw-item">
+          <div class="fv-hw-check"></div>
+          <div class="fv-hw-text">
+            <h5>Chapter 5 Problems</h5>
+            <span>Math &bull; Due Tomorrow</span>
+          </div>
+          <span class="fv-hw-tag" style="background:rgba(239,68,68,0.15);color:#f87171">High</span>
+        </div>
+        <div class="fv-hw-item">
+          <div class="fv-hw-check"></div>
+          <div class="fv-hw-text">
+            <h5>Essay Draft</h5>
+            <span>English &bull; Due Friday</span>
+          </div>
+          <span class="fv-hw-tag" style="background:rgba(251,191,36,0.15);color:#fbbf24">Med</span>
+        </div>
+        <div class="fv-hw-item">
+          <div class="fv-hw-check done"></div>
+          <div class="fv-hw-text">
+            <h5>Lab Report</h5>
+            <span>Science &bull; Completed</span>
+          </div>
+          <span class="fv-hw-tag" style="background:rgba(34,197,94,0.15);color:#4ade80">Done</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Grade Tracker -->
+    <div class="feature-row reverse">
+      <div class="feature-info">
+        <span class="feat-badge feat-badge-core">Core Tool</span>
+        <h3>Grade Tracker</h3>
+        <p>Track every test, quiz, homework, and project score across all your classes. Instantly see your letter grade, percentage, and how each assignment impacts your overall grade.</p>
+        <ul class="feature-bullets">
+          <li><div class="bullet-icon">&#10003;</div> Add grades by class with assignment type (test, quiz, homework, project)</li>
+          <li><div class="bullet-icon">&#10003;</div> See letter grade and percentage calculated automatically</li>
+          <li><div class="bullet-icon">&#10003;</div> Visual progress bars show how you're doing in each class</li>
+          <li><div class="bullet-icon">&#10003;</div> Track trends to see if your grades are going up or down</li>
+          <li><div class="bullet-icon">&#10003;</div> All grades feed into the GPA calculator automatically</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-icon">&#9733;</div>
+        <div class="fv-title">Grade Overview</div>
+        <div class="fv-desc">See how you're doing across all classes</div>
+        <div style="margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#e2e8f0;font-weight:600">Math</span><span style="color:#22c55e;font-weight:700">A- (92%)</span></div>
+          <div class="fv-bar"><div class="fv-bar-fill" style="width:92%;background:linear-gradient(90deg,#22c55e,#4ade80)"></div></div>
+        </div>
+        <div style="margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#e2e8f0;font-weight:600">English</span><span style="color:#3b82f6;font-weight:700">B+ (88%)</span></div>
+          <div class="fv-bar"><div class="fv-bar-fill" style="width:88%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div></div>
+        </div>
+        <div style="margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#e2e8f0;font-weight:600">Science</span><span style="color:#f59e0b;font-weight:700">B (85%)</span></div>
+          <div class="fv-bar"><div class="fv-bar-fill" style="width:85%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:#e2e8f0;font-weight:600">History</span><span style="color:#22c55e;font-weight:700">A (95%)</span></div>
+          <div class="fv-bar"><div class="fv-bar-fill" style="width:95%;background:linear-gradient(90deg,#22c55e,#4ade80)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GPA Calculator -->
+    <div class="feature-row">
+      <div class="feature-info">
+        <span class="feat-badge feat-badge-core">Core Tool</span>
+        <h3>GPA Calculator</h3>
+        <p>Know exactly where you stand. The GPA calculator pulls from your grades and shows your cumulative GPA on a 4.0 scale. Use the goal calculator to figure out what score you need on your next test.</p>
+        <ul class="feature-bullets">
+          <li><div class="bullet-icon">&#10003;</div> Automatic GPA calculation from all your tracked grades</li>
+          <li><div class="bullet-icon">&#10003;</div> 4.0 scale with support for weighted/honors classes</li>
+          <li><div class="bullet-icon">&#10003;</div> Goal calculator: "What do I need on my next test to get an A?"</li>
+          <li><div class="bullet-icon">&#10003;</div> Semester and cumulative GPA views</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-icon">&#127919;</div>
+        <div class="fv-title">Your GPA</div>
+        <div class="fv-mock-row">
+          <div class="fv-mock-item">
+            <div class="val" style="color:#3b82f6">3.85</div>
+            <div class="lbl">Current GPA</div>
+          </div>
+          <div class="fv-mock-item">
+            <div class="val" style="color:#22c55e">A-</div>
+            <div class="lbl">Average Grade</div>
+          </div>
+        </div>
+        <div class="fv-mock-item" style="margin-top:8px">
+          <div class="lbl" style="margin-bottom:4px">Goal Calculator</div>
+          <div style="font-size:14px;color:#94a3b8">You need a <strong style="color:#fbbf24">87%</strong> on your next Math test to keep an A-</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Study Timer -->
+    <div class="feature-row reverse">
+      <div class="feature-info">
+        <span class="feat-badge feat-badge-core">Core Tool</span>
+        <h3>Pomodoro Study Timer</h3>
+        <p>Stay focused with the built-in Pomodoro timer. Choose from preset durations, start the timer, and track how long you've studied each day. Proven to boost productivity and prevent burnout.</p>
+        <ul class="feature-bullets">
+          <li><div class="bullet-icon">&#10003;</div> Preset timers: 15, 25, 45, and 60 minutes</li>
+          <li><div class="bullet-icon">&#10003;</div> Visual countdown with start, pause, and reset controls</li>
+          <li><div class="bullet-icon">&#10003;</div> Tracks total study time per day</li>
+          <li><div class="bullet-icon">&#10003;</div> Audio notification when timer completes</li>
+          <li><div class="bullet-icon">&#10003;</div> Session counter shows how many sessions you've completed</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-icon">&#9201;</div>
+        <div class="fv-title">Study Timer</div>
+        <div class="fv-timer-display">24:38</div>
+        <div class="fv-timer-presets">
+          <div class="fv-timer-preset">15m</div>
+          <div class="fv-timer-preset active">25m</div>
+          <div class="fv-timer-preset">45m</div>
+          <div class="fv-timer-preset">60m</div>
+        </div>
+        <div class="fv-mock-row" style="margin-top:16px">
+          <div class="fv-mock-item">
+            <div class="val" style="color:#22c55e;font-size:18px">3</div>
+            <div class="lbl">Sessions Today</div>
+          </div>
+          <div class="fv-mock-item">
+            <div class="val" style="color:#3b82f6;font-size:18px">1h 15m</div>
+            <div class="lbl">Total Today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Flashcards -->
+    <div class="feature-row">
+      <div class="feature-info">
+        <span class="feat-badge feat-badge-new">Popular</span>
+        <h3>Flashcards</h3>
+        <p>Create unlimited decks of flashcards for any subject. Flip cards to test yourself, shuffle for random order, and navigate between cards easily. Perfect for vocabulary, definitions, dates, and formulas.</p>
+        <ul class="feature-bullets">
+          <li><div class="bullet-icon">&#10003;</div> Create unlimited decks organized by subject</li>
+          <li><div class="bullet-icon">&#10003;</div> Flip animation reveals the answer</li>
+          <li><div class="bullet-icon">&#10003;</div> Shuffle mode for randomized review</li>
+          <li><div class="bullet-icon">&#10003;</div> Navigate with previous/next buttons</li>
+          <li><div class="bullet-icon">&#10003;</div> Card counter shows your progress through the deck</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-icon">&#127183;</div>
+        <div class="fv-title">Flashcard Deck: Biology</div>
+        <div class="fv-desc">Card 3 of 20</div>
+        <div class="fv-card-flip">
+          <div class="fv-card-label">Question</div>
+          <div class="fv-card-text">What is the powerhouse of the cell?</div>
+          <div class="fv-card-hint">Click to flip</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Claude AI Tutor -->
+    <div class="feature-row reverse">
+      <div class="feature-info">
+        <span class="feat-badge feat-badge-ai">AI Powered</span>
+        <h3>Claude AI Tutor</h3>
+        <p>Get instant homework help, concept explanations, practice quizzes, essay feedback, and study tips from Claude AI. It's like having a personal tutor available 24/7 right inside your planner.</p>
+        <ul class="feature-bullets">
+          <li><div class="bullet-icon">&#10003;</div> Ask any homework or study question</li>
+          <li><div class="bullet-icon">&#10003;</div> Get step-by-step explanations for math, science, and more</li>
+          <li><div class="bullet-icon">&#10003;</div> Generate practice quizzes on any topic</li>
+          <li><div class="bullet-icon">&#10003;</div> Get essay feedback and writing help</li>
+          <li><div class="bullet-icon">&#10003;</div> Study tips and learning strategies tailored to your needs</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-icon">&#129302;</div>
+        <div class="fv-title">Ask Claude AI</div>
+        <div class="fv-ai-chat">
+          <div class="fv-ai-msg user">Can you explain how photosynthesis works?</div>
+          <div class="fv-ai-msg bot">Photosynthesis is how plants convert sunlight into energy. There are two main stages: the light reactions and the Calvin cycle...</div>
+          <div class="fv-ai-msg user">Can you quiz me on it?</div>
+          <div class="fv-ai-msg bot">Sure! Question 1: What molecule captures light energy in the chloroplast?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ALL FEATURES GRID ===== -->
+  <section class="features-grid-section">
+    <h2 class="section-title">Plus Even More Tools</h2>
+    <p class="section-subtitle">Every feature is designed to make your school life easier.</p>
+    <div class="feat-grid">
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#128197;</div>
+        <h4>Class Schedule</h4>
+        <p>Visual weekly calendar with class names, rooms, and times</p>
+      </div>
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#9745;</div>
+        <h4>To-Do List</h4>
+        <p>Quick tasks with categories: School, Personal, Extracurricular</p>
+      </div>
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#128170;</div>
+        <h4>Exam Countdown</h4>
+        <p>Track upcoming exams with color-coded urgency alerts</p>
+      </div>
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#128221;</div>
+        <h4>Notes</h4>
+        <p>Full text editor with auto-save and unlimited notes</p>
+      </div>
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#128218;</div>
+        <h4>Study Tools Hub</h4>
+        <p>One-click links to Quizlet, Khan Academy, Desmos, and more</p>
+      </div>
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#127912;</div>
+        <h4>Dark &amp; Light Mode</h4>
+        <p>Switch themes anytime, your preference is saved</p>
+      </div>
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#128274;</div>
+        <h4>100% Private</h4>
+        <p>All data stays on your device, nothing sent to servers</p>
+      </div>
+      <div class="feat-mini">
+        <div class="feat-mini-icon">&#9889;</div>
+        <h4>Works Offline</h4>
+        <p>No internet needed after first load, works anywhere</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STUDY TOOLS HUB ===== -->
+  <section class="tools-section" id="tools">
+    <h2 class="section-title">Built-in Study Tool Links</h2>
+    <p class="section-subtitle">Quick access to the best study tools on the web, all in one place inside your planner.</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#4257b2"></div>
+        <div class="tool-card-info">
+          <h4>Quizlet</h4>
+          <p>Flashcards &amp; study sets</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#14bf96"></div>
+        <div class="tool-card-info">
+          <h4>Khan Academy</h4>
+          <p>Free video lessons</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#dd1100"></div>
+        <div class="tool-card-info">
+          <h4>Wolfram Alpha</h4>
+          <p>Math solver &amp; answers</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#4caf50"></div>
+        <div class="tool-card-info">
+          <h4>Desmos</h4>
+          <p>Graphing calculator</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#15c39a"></div>
+        <div class="tool-card-info">
+          <h4>Grammarly</h4>
+          <p>Writing &amp; grammar check</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#4285f4"></div>
+        <div class="tool-card-info">
+          <h4>Google Scholar</h4>
+          <p>Research papers &amp; citations</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#0056d2"></div>
+        <div class="tool-card-info">
+          <h4>Coursera</h4>
+          <p>Online courses</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#236fa1"></div>
+        <div class="tool-card-info">
+          <h4>Anki</h4>
+          <p>Spaced repetition flashcards</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#f5a623"></div>
+        <div class="tool-card-info">
+          <h4>Brainscape</h4>
+          <p>Smart flashcards</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#f4d03f"></div>
+        <div class="tool-card-info">
+          <h4>SparkNotes</h4>
+          <p>Book summaries &amp; guides</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#1db954"></div>
+        <div class="tool-card-info">
+          <h4>Spotify Focus</h4>
+          <p>Study music &amp; playlists</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-dot" style="background:#6c5ce7"></div>
+        <div class="tool-card-info">
+          <h4>Citation Machine</h4>
+          <p>Auto-generate citations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="comparison-section">
+    <h2 class="section-title">Web vs Desktop</h2>
+    <p class="section-subtitle">Both versions have the same features. Choose what works for you.</p>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Web Version</th>
+          <th>Desktop App</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>All 11 tools</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+        <tr><td>Setup wizard</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+        <tr><td>Dark / Light mode</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+        <tr><td>Works offline</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+        <tr><td>Claude AI tutor</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+        <tr><td>No install needed</td><td class="check">&#10003;</td><td class="cross">&#10005;</td></tr>
+        <tr><td>Native window</td><td class="cross">&#10005;</td><td class="check">&#10003;</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <h2 class="section-title">FAQ</h2>
+    <div class="faq-item">
+      <h4>Is it really free?</h4>
+      <p>Yes, 100% free with no hidden costs, no premium tier, and no ads. The code is open source on GitHub.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I need to create an account?</h4>
+      <p>No. There's no signup, no login, no email required. Just open and start using it immediately.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Where is my data stored?</h4>
+      <p>All your data is stored locally in your browser's localStorage. Nothing is sent to any server. If you clear your browser data, your planner data will be reset.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What is the Claude AI tutor?</h4>
+      <p>Claude is an AI assistant by Anthropic. You'll need your own API key from console.anthropic.com to use it. The AI helps with homework, explains concepts, quizzes you, and gives study tips.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Should I use the web version or desktop app?</h4>
+      <p>Both have the same features. The web version works instantly in your browser. The desktop version runs as a native window if you prefer that. Most students use the web version.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I use it on my phone?</h4>
+      <p>The web version works on mobile browsers, though it's designed primarily for desktop/laptop screens. The layout adapts to smaller screens.</p>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="cta-bottom">
+    <h2>Ready to Get Organized?</h2>
+    <p>Join students who use Student Planner to stay on top of school.</p>
+    <div class="cta-row">
+      <a href="app.html" class="cta-btn cta-primary">
+        <svg height="22" width="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        Launch Web App
+      </a>
+      <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank" class="cta-btn cta-secondary">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        View on GitHub
+      </a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Student Planner &copy; 2026 &bull; Free forever</p>
+    <p>Student Planner &copy; 2026 &bull; Free &amp; open source forever</p>
     <p style="margin-top:8px">
       <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank">GitHub</a>
       <a href="#features">Features</a>
+      <a href="#tools">Study Tools</a>
+      <a href="#faq">FAQ</a>
     </p>
   </footer>
 
