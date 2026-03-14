@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Planner - The Ultimate School Toolkit</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --accent: #8b5cf6;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 40px;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px;
+    }
+
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-download {
+      background: var(--primary) !important;
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      transition: background 0.2s !important;
+    }
+    .nav-download:hover { background: var(--primary-dark) !important; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 160px 40px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(59,130,246,0.1);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1.5px;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(59,130,246,0.4);
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-icon { font-size: 20px; }
+
+    .hero-image {
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .app-preview {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .preview-titlebar {
+      background: #1e293b;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .preview-dot.red { background: #ef4444; }
+    .preview-dot.yellow { background: #f59e0b; }
+    .preview-dot.green { background: #22c55e; }
+
+    .preview-body {
+      display: flex;
+      min-height: 420px;
+    }
+
+    .preview-sidebar {
+      width: 200px;
+      background: #1e293b;
+      padding: 16px 0;
+      flex-shrink: 0;
+    }
+
+    .preview-nav-item {
+      padding: 9px 18px;
+      color: #94a3b8;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .preview-nav-item.active {
+      background: rgba(59,130,246,0.15);
+      color: #fff;
+      border-left: 3px solid var(--primary);
+    }
+
+    .preview-content {
+      flex: 1;
+      padding: 28px;
+      background: var(--bg);
+    }
+
+    .preview-content h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .preview-card-item {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .preview-card-item h4 {
+      font-size: 11px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .preview-card-item .big-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .preview-card-item .mini-list {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 2;
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ===== TOOLS SECTION ===== */
+    .tools-section {
+      padding: 80px 40px;
+      background: linear-gradient(180deg, #f1f5f9, var(--bg));
+    }
+
+    .tools-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tools-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .tool-logo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tool-logo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .tool-logo-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .tool-logo-card span {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* ===== AI SECTION ===== */
+    .ai-section {
+      padding: 100px 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .ai-card {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      border-radius: 24px;
+      padding: 60px;
+      color: #fff;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .ai-info { flex: 1; }
+    .ai-info .ai-badge {
+      display: inline-block;
+      background: rgba(217,119,6,0.2);
+      color: #f59e0b;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ai-info h3 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .ai-info p {
+      color: #94a3b8;
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .ai-visual {
+      flex-shrink: 0;
+      width: 200px; height: 200px;
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      box-shadow: 0 0 60px rgba(245,158,11,0.3);
+    }
+
+    /* ===== DOWNLOAD SECTION ===== */
+    .download-section {
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .download-section::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .download-card {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 60px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    }
+
+    .download-card h2 {
+      font-size: 36px;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .download-card p {
+      color: var(--text-light);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .system-req {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-inner span {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--primary); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 36px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .ai-card { flex-direction: column; text-align: center; padding: 40px; }
+      .preview-sidebar { display: none; }
+      .preview-body { min-height: 300px; }
+      .preview-grid { grid-template-columns: 1fr; }
+      .nav-links a:not(.nav-download) { display: none; }
+      .footer-inner { flex-direction: column; gap: 16px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 120px 20px 60px; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .features, .tools-section, .ai-section, .download-section { padding: 60px 20px; }
+      .section-title { font-size: 28px; }
+      .download-card { padding: 40px 24px; }
+      nav { padding: 0 20px; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate { animation: fadeUp 0.6s ease-out both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">SP</div>
+        Student Planner
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#tools">Study Tools</a>
+        <a href="#ai">AI Tutor</a>
+        <a href="#download" class="nav-download">Download Free</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Free &amp; Open Source for Students</div>
+    <h1 class="animate">The <span class="gradient-text">Ultimate School Toolkit</span><br>for Students</h1>
+    <p class="animate delay-1">Track homework, manage grades, study with flashcards, get AI tutoring help, and stay on top of everything school throws at you.</p>
+    <div class="hero-buttons animate delay-2">
+      <a href="#download" class="btn btn-primary">
+        <span class="btn-icon">&#11015;</span> Download for Windows
+      </a>
+      <a href="#features" class="btn btn-secondary">
+        <span class="btn-icon">&#9889;</span> See Features
+      </a>
+    </div>
+
+    <div class="hero-image animate delay-3">
+      <div class="app-preview">
+        <div class="preview-titlebar">
+          <div class="preview-dot red"></div>
+          <div class="preview-dot yellow"></div>
+          <div class="preview-dot green"></div>
+        </div>
+        <div class="preview-body">
+          <div class="preview-sidebar">
+            <div class="preview-nav-item active">&#9776; Dashboard</div>
+            <div class="preview-nav-item">&#9998; Homework</div>
+            <div class="preview-nav-item">&#9733; Grades</div>
+            <div class="preview-nav-item">&#127919; GPA Calc</div>
+            <div class="preview-nav-item">&#128197; Schedule</div>
+            <div class="preview-nav-item">&#9745; To-Do List</div>
+            <div class="preview-nav-item">&#128170; Exams</div>
+            <div class="preview-nav-item">&#127183; Flashcards</div>
+            <div class="preview-nav-item">&#128221; Notes</div>
+            <div class="preview-nav-item">&#9201; Study Timer</div>
+            <div class="preview-nav-item">&#128218; Study Tools</div>
+            <div class="preview-nav-item">&#129302; Ask Claude AI</div>
+          </div>
+          <div class="preview-content">
+            <h3>Dashboard</h3>
+            <div class="preview-grid">
+              <div class="preview-card-item">
+                <h4>GPA Overview</h4>
+                <div class="big-num">3.85</div>
+              </div>
+              <div class="preview-card-item">
+                <h4>Quick Stats</h4>
+                <div class="mini-list">
+                  5 Pending Tasks<br>
+                  12 Completed<br>
+                  1 Overdue
+                </div>
+              </div>
+              <div class="preview-card-item">
+                <h4>Upcoming Homework</h4>
+                <div class="mini-list">
+                  Math: Ch.5 Problems<br>
+                  English: Essay Draft<br>
+                  Science: Lab Report
+                </div>
+              </div>
+              <div class="preview-card-item">
+                <h4>Next Exam</h4>
+                <div class="big-num" style="font-size:24px;color:#ef4444">3 days</div>
+                <div class="mini-list">Chemistry Midterm</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-label">Everything You Need</div>
+    <h2 class="section-title">Built for How Students Actually Work</h2>
+    <p class="section-subtitle">12 powerful tools in one app. No subscriptions, no accounts needed, everything saved locally on your computer.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(59,130,246,0.1)">&#9998;</div>
+        <h3>Homework Tracker</h3>
+        <p>Add assignments with due dates, priority levels, and subjects. Filter by status and never miss a deadline again.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(34,197,94,0.1)">&#9733;</div>
+        <h3>Grade Tracker</h3>
+        <p>Track grades for every class with categories like tests, quizzes, and projects. See your letter grade and percentage instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(139,92,246,0.1)">&#127919;</div>
+        <h3>GPA Calculator</h3>
+        <p>Calculate your overall GPA automatically. Find out exactly what score you need on your next assignment to hit your goal.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(245,158,11,0.1)">&#128197;</div>
+        <h3>Class Schedule</h3>
+        <p>Visual weekly schedule grid showing all your classes, rooms, and times. See today's classes at a glance from the dashboard.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(239,68,68,0.1)">&#128170;</div>
+        <h3>Exam Countdown</h3>
+        <p>Add upcoming exams with study topics. Color-coded urgency shows how close each exam is so you can prioritize.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(6,182,212,0.1)">&#127183;</div>
+        <h3>Flashcards</h3>
+        <p>Create decks with flip cards, shuffle them, and study right inside the app. No Quizlet account needed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(236,72,153,0.1)">&#128221;</div>
+        <h3>Notes</h3>
+        <p>Full text editor for class notes. Create, edit, and organize notes by subject. Auto-saves as you type.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(16,185,129,0.1)">&#9201;</div>
+        <h3>Study Timer</h3>
+        <p>Pomodoro timer with presets (15, 25, 45, 60 min). Tracks your daily study time with a session log.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(99,102,241,0.1)">&#9745;</div>
+        <h3>To-Do List</h3>
+        <p>Quick task manager with categories (school, personal, extracurricular). Filter active vs. completed tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDY TOOLS -->
+  <section class="tools-section" id="tools">
+    <div class="tools-inner">
+      <div class="section-label">Integrated Study Resources</div>
+      <h2 class="section-title">Your Favorite Study Sites, One Click Away</h2>
+      <p class="section-subtitle">Quick-launch links to the best free study tools on the internet, organized by category.</p>
+
+      <div class="tools-logos">
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#4257b2">Q</div>
+          <span>Quizlet</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#14bf96">K</div>
+          <span>Khan Academy</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#dd1100">W</div>
+          <span>Wolfram Alpha</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#4caf50">D</div>
+          <span>Desmos</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#15c39a">G</div>
+          <span>Grammarly</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#4285f4">GS</div>
+          <span>Google Scholar</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#0056d2">C</div>
+          <span>Coursera</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#236fa1">A</div>
+          <span>Anki</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#f4d03f">S</div>
+          <span>SparkNotes</span>
+        </div>
+        <div class="tool-logo-card">
+          <div class="tool-logo-icon" style="background:#1db954">S</div>
+          <span>Spotify Focus</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLAUDE AI -->
+  <section class="ai-section" id="ai">
+    <div class="ai-card">
+      <div class="ai-info">
+        <div class="ai-badge">Powered by Claude</div>
+        <h3>Built-in AI Study Buddy</h3>
+        <p>Get instant help with homework, have concepts explained in simple terms, get quizzed on any topic, or ask for study tips.</p>
+        <p>Claude AI is built right into the app. Just add your API key and start chatting. Your key stays on your computer and is never shared.</p>
+      </div>
+      <div class="ai-visual">&#129302;</div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download-section" id="download">
+    <div class="download-card">
+      <h2>Ready to Ace Your Classes?</h2>
+      <p>Download Student Planner for free. No account needed, no ads, no subscriptions.</p>
+      <div class="download-buttons">
+        <a href="https://github.com/student-planner/releases" class="btn btn-primary">
+          <span class="btn-icon">&#11015;</span> Download for Windows
+        </a>
+      </div>
+      <p class="system-req">Windows 10 or later &bull; ~100 MB &bull; Free forever &bull; No internet required (except AI chat)</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>Student Planner &copy; 2026. Free &amp; open source.</span>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#tools">Study Tools</a>
+        <a href="#download">Download</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll animations -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature-card, .tool-logo-card, .ai-card, .download-card').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
