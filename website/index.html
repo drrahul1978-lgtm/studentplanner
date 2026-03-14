@@ -514,6 +514,87 @@
       color: var(--text-light);
     }
 
+    /* ===== BIG DOWNLOAD BUTTON ===== */
+    .big-download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto 40px;
+      padding: 22px 36px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 16px;
+      font-size: 18px;
+      transition: all 0.25s;
+      box-shadow: 0 6px 30px rgba(34,197,94,0.35);
+      cursor: pointer;
+    }
+    .big-download-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 40px rgba(34,197,94,0.45);
+    }
+    .big-download-btn:active { transform: scale(0.98); }
+    .big-download-text { text-align: left; line-height: 1.4; }
+    .big-download-text small { font-size: 13px; opacity: 0.85; display: block; font-weight: 400; }
+
+    /* ===== INSTALL STEPS ===== */
+    .install-steps {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .install-steps h3 {
+      font-size: 20px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .steps-grid { display: flex; flex-direction: column; gap: 20px; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .step-number {
+      width: 38px; height: 38px;
+      min-width: 38px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .step-info strong { font-size: 15px; display: block; margin-bottom: 2px; }
+    .step-info p { font-size: 14px; color: var(--text-light); margin: 0; }
+    .step-info a { text-decoration: underline; }
+    .cmd-box {
+      margin-top: 8px;
+      background: #1e293b;
+      color: #22c55e;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 14px;
+      user-select: all;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+    }
+    .steps-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
+      margin-top: 20px;
+    }
+
     /* ===== FOOTER ===== */
     footer {
       padding: 40px;
@@ -796,12 +877,54 @@
     <div class="download-card">
       <h2>Ready to Ace Your Classes?</h2>
       <p>Download Student Planner for free. No account needed, no ads, no subscriptions.</p>
-      <div class="download-buttons">
-        <a href="downloads/StudentPlanner.zip" download="StudentPlanner.zip" class="btn btn-primary">
-          <span class="btn-icon">&#11015;</span> Download for Windows
-        </a>
+
+      <!-- BIG download button -->
+      <a href="downloads/StudentPlanner.zip" download="StudentPlanner.zip" class="big-download-btn" id="downloadBtn">
+        <span style="font-size:36px">&#11015;</span>
+        <span class="big-download-text">
+          <strong>Download for Windows</strong>
+          <small>StudentPlanner.zip &bull; Free &bull; No signup</small>
+        </span>
+      </a>
+
+      <!-- Simple install steps -->
+      <div class="install-steps">
+        <h3>How to Install <span style="font-size:16px">(takes 2 minutes)</span></h3>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-info">
+              <strong>Click the download button</strong>
+              <p>A ZIP file will download to your computer</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-info">
+              <strong>Unzip the folder</strong>
+              <p>Right-click the ZIP &rarr; "Extract All" &rarr; Click "Extract"</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-info">
+              <strong>Install Node.js (if you don't have it)</strong>
+              <p>Go to <a href="https://nodejs.org" target="_blank" style="color:var(--primary)">nodejs.org</a> and install the LTS version</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-info">
+              <strong>Open the folder &amp; run the app</strong>
+              <p>Open the folder, double-click the address bar, type <code>cmd</code> and press Enter. Then type:</p>
+              <div class="cmd-box">npm install && npm start</div>
+            </div>
+          </div>
+        </div>
+        <p class="steps-note">That's it! The app will open automatically. Next time, just run <code style="background:#f1f5f9;padding:2px 8px;border-radius:4px">npm start</code> to reopen it.</p>
       </div>
-      <p class="system-req">Windows 10 or later &bull; ~100 MB &bull; Free forever &bull; No internet required (except AI chat)</p>
+
+      <p class="system-req">Windows 10 or later &bull; Free forever &bull; No internet required (except AI chat)</p>
     </div>
   </section>
 
