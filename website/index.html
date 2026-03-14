@@ -3,964 +3,419 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Planner - The Ultimate School Toolkit</title>
+  <title>Student Planner - Download</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --primary: #3b82f6;
-      --primary-dark: #2563eb;
-      --accent: #8b5cf6;
-      --text: #1e293b;
-      --text-light: #64748b;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --border: #e2e8f0;
-    }
-
     body {
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
-      overflow-x: hidden;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
     }
 
-    /* ===== NAV ===== */
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-      padding: 0 40px;
-    }
-
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      height: 64px;
+      align-items: center;
+      padding: 20px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-
-    .nav-logo {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
+    .logo {
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-
-    .nav-logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: 18px;
-    }
-
-    .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-links a {
       text-decoration: none;
-      color: var(--text-light);
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .logo-box {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; color: #fff;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-right a {
+      color: #94a3b8;
+      text-decoration: none;
       font-size: 14px;
       font-weight: 500;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--primary); }
-
-    .nav-download {
-      background: var(--primary) !important;
-      color: #fff !important;
-      padding: 8px 20px;
-      border-radius: 8px;
-      transition: background 0.2s !important;
+    .nav-right a:hover { color: #fff; }
+    .gh-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .nav-download:hover { background: var(--primary-dark) !important; }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
-      padding: 160px 40px 100px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 80px 24px 40px;
+      max-width: 700px;
+      margin: 0 auto;
     }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(59,130,246,0.1);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 24px;
-      letter-spacing: 0.5px;
-    }
-
     .hero h1 {
-      font-size: 56px;
+      font-size: 48px;
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
     }
-
-    .hero h1 .gradient-text {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+    .hero h1 span {
+      background: linear-gradient(135deg, #3b82f6, #a78bfa);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .hero p {
-      font-size: 20px;
-      color: var(--text-light);
-      max-width: 600px;
+      font-size: 18px;
+      color: #94a3b8;
+      max-width: 500px;
       margin: 0 auto 40px;
       line-height: 1.6;
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(59,130,246,0.3);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(59,130,246,0.4);
-    }
-
-    .btn-secondary {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    .btn-icon { font-size: 20px; }
-
-    .hero-image {
-      margin-top: 60px;
-      position: relative;
-    }
-
-    .app-preview {
-      max-width: 900px;
-      width: 100%;
-      margin: 0 auto;
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 80px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-
-    .preview-titlebar {
+    /* DOWNLOAD BOX */
+    .download-box {
+      max-width: 520px;
+      margin: 0 auto 60px;
       background: #1e293b;
-      padding: 12px 16px;
+      border: 1px solid #334155;
+      border-radius: 20px;
+      padding: 40px 36px;
+    }
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: 700;
+      transition: all 0.2s;
+      box-shadow: 0 4px 24px rgba(34, 197, 94, 0.3);
+      margin-bottom: 10px;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(34, 197, 94, 0.4);
+    }
+    .download-btn:active { transform: scale(0.98); }
+    .download-btn svg { flex-shrink: 0; }
+    .download-sub {
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 32px;
+    }
+
+    /* STEPS */
+    .steps-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 30px; height: 30px;
+      min-width: 30px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .step-text {
+      padding-top: 4px;
+    }
+    .step-text strong {
+      display: block;
+      font-size: 15px;
+      color: #e2e8f0;
+      margin-bottom: 2px;
+    }
+    .step-text p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* FEATURES STRIP */
+    .features-strip {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+    .features-strip h2 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: #fff;
+    }
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .feat {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.2s;
+    }
+    .feat:hover { transform: translateY(-2px); }
+    .feat-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .feat h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+    .feat p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* STUDY TOOLS */
+    .tools-row {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .tools-row h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    .tools-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .tool-chip {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .preview-dot {
-      width: 12px; height: 12px;
+    .tool-dot {
+      width: 10px; height: 10px;
       border-radius: 50%;
-    }
-    .preview-dot.red { background: #ef4444; }
-    .preview-dot.yellow { background: #f59e0b; }
-    .preview-dot.green { background: #22c55e; }
-
-    .preview-body {
-      display: flex;
-      min-height: 420px;
-    }
-
-    .preview-sidebar {
-      width: 200px;
-      background: #1e293b;
-      padding: 16px 0;
       flex-shrink: 0;
     }
 
-    .preview-nav-item {
-      padding: 9px 18px;
-      color: #94a3b8;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .preview-nav-item.active {
-      background: rgba(59,130,246,0.15);
-      color: #fff;
-      border-left: 3px solid var(--primary);
-    }
-
-    .preview-content {
-      flex: 1;
-      padding: 28px;
-      background: var(--bg);
-    }
-
-    .preview-content h3 {
-      font-size: 18px;
-      margin-bottom: 16px;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .preview-card-item {
-      background: var(--card);
-      border-radius: 10px;
-      padding: 16px;
-      border: 1px solid var(--border);
-    }
-
-    .preview-card-item h4 {
-      font-size: 11px;
-      color: var(--text-light);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-    }
-
-    .preview-card-item .big-num {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .preview-card-item .mini-list {
-      font-size: 12px;
-      color: var(--text-light);
-      line-height: 2;
-    }
-
-    /* ===== FEATURES ===== */
-    .features {
-      padding: 100px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 18px;
-      color: var(--text-light);
-      max-width: 600px;
-      margin: 0 auto 60px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .feature-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 32px;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-    }
-
-    .feature-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .feature-card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .feature-card p {
-      font-size: 14px;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    /* ===== TOOLS SECTION ===== */
-    .tools-section {
-      padding: 80px 40px;
-      background: linear-gradient(180deg, #f1f5f9, var(--bg));
-    }
-
-    .tools-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .tools-logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 48px;
-    }
-
-    .tool-logo-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px 28px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .tool-logo-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    }
-
-    .tool-logo-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .tool-logo-card span {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    /* ===== AI SECTION ===== */
-    .ai-section {
-      padding: 100px 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .ai-card {
-      background: linear-gradient(135deg, #1e293b, #334155);
-      border-radius: 24px;
-      padding: 60px;
-      color: #fff;
-      display: flex;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .ai-info { flex: 1; }
-    .ai-info .ai-badge {
-      display: inline-block;
-      background: rgba(217,119,6,0.2);
-      color: #f59e0b;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .ai-info h3 {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .ai-info p {
-      color: #94a3b8;
-      font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 8px;
-    }
-
-    .ai-visual {
-      flex-shrink: 0;
-      width: 200px; height: 200px;
-      background: linear-gradient(135deg, #d97706, #f59e0b);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      box-shadow: 0 0 60px rgba(245,158,11,0.3);
-    }
-
-    /* ===== DOWNLOAD SECTION ===== */
-    .download-section {
-      padding: 100px 40px;
-      text-align: center;
-      position: relative;
-    }
-
-    .download-section::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .download-card {
-      max-width: 700px;
-      margin: 0 auto;
-      background: var(--card);
-      border-radius: 24px;
-      padding: 60px;
-      border: 1px solid var(--border);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
-    }
-
-    .download-card h2 {
-      font-size: 36px;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .download-card p {
-      color: var(--text-light);
-      font-size: 16px;
-      margin-bottom: 32px;
-    }
-
-    .download-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .system-req {
-      font-size: 12px;
-      color: var(--text-light);
-    }
-
-    /* ===== BIG DOWNLOAD BUTTON ===== */
-    .big-download-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      width: 100%;
-      max-width: 420px;
-      margin: 0 auto 40px;
-      padding: 22px 36px;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 16px;
-      font-size: 18px;
-      transition: all 0.25s;
-      box-shadow: 0 6px 30px rgba(34,197,94,0.35);
-      cursor: pointer;
-    }
-    .big-download-btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 40px rgba(34,197,94,0.45);
-    }
-    .big-download-btn:active { transform: scale(0.98); }
-    .big-download-text { text-align: left; line-height: 1.4; }
-    .big-download-text small { font-size: 13px; opacity: 0.85; display: block; font-weight: 400; }
-
-    /* ===== INSTALL STEPS ===== */
-    .install-steps {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 24px;
-      text-align: left;
-    }
-    .install-steps h3 {
-      font-size: 20px;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-    .steps-grid { display: flex; flex-direction: column; gap: 20px; }
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .step-number {
-      width: 38px; height: 38px;
-      min-width: 38px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-    }
-    .step-info strong { font-size: 15px; display: block; margin-bottom: 2px; }
-    .step-info p { font-size: 14px; color: var(--text-light); margin: 0; }
-    .step-info a { text-decoration: underline; }
-    .cmd-box {
-      margin-top: 8px;
-      background: #1e293b;
-      color: #22c55e;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 14px;
-      user-select: all;
-      cursor: pointer;
-      letter-spacing: 0.3px;
-    }
-    .steps-note {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-light);
-      margin-top: 20px;
-    }
-
-    /* ===== FOOTER ===== */
+    /* FOOTER */
     footer {
-      padding: 40px;
-      border-top: 1px solid var(--border);
       text-align: center;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-inner span {
+      padding: 40px 24px;
+      border-top: 1px solid #1e293b;
       font-size: 13px;
-      color: var(--text-light);
+      color: #475569;
     }
-
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-links a {
-      font-size: 13px;
-      color: var(--text-light);
+    footer a {
+      color: #64748b;
       text-decoration: none;
-      transition: color 0.2s;
+      margin: 0 12px;
     }
-    .footer-links a:hover { color: var(--primary); }
+    footer a:hover { color: #94a3b8; }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .hero h1 { font-size: 36px; }
-      .features-grid { grid-template-columns: 1fr; }
-      .ai-card { flex-direction: column; text-align: center; padding: 40px; }
-      .preview-sidebar { display: none; }
-      .preview-body { min-height: 300px; }
-      .preview-grid { grid-template-columns: 1fr; }
-      .nav-links a:not(.nav-download) { display: none; }
-      .footer-inner { flex-direction: column; gap: 16px; }
-    }
-
+    /* RESPONSIVE */
     @media (max-width: 600px) {
-      .hero { padding: 120px 20px 60px; }
-      .hero h1 { font-size: 28px; }
+      .hero h1 { font-size: 32px; }
       .hero p { font-size: 16px; }
-      .features, .tools-section, .ai-section, .download-section { padding: 60px 20px; }
-      .section-title { font-size: 28px; }
-      .download-card { padding: 40px 24px; }
-      nav { padding: 0 20px; }
+      nav { padding: 16px 20px; }
+      .nav-right a:not(.gh-link) { display: none; }
+      .download-box { margin-left: 16px; margin-right: 16px; padding: 28px 20px; }
+      .download-btn { font-size: 17px; padding: 18px; }
     }
 
-    /* ===== ANIMATIONS ===== */
+    /* ANIMATIONS */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .animate { animation: fadeUp 0.6s ease-out both; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
+    .hero, .download-box, .features-strip, .tools-row {
+      animation: fadeUp 0.5s ease-out both;
+    }
+    .download-box { animation-delay: 0.1s; }
+    .features-strip { animation-delay: 0.2s; }
+    .tools-row { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">SP</div>
-        Student Planner
+    <a href="#" class="logo">
+      <div class="logo-box">SP</div>
+      Student Planner
+    </a>
+    <div class="nav-right">
+      <a href="#features">Features</a>
+      <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank" class="gh-link">
+        <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
       </a>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#tools">Study Tools</a>
-        <a href="#ai">AI Tutor</a>
-        <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank" style="display:flex;align-items:center;gap:6px">
-          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-        <a href="#download" class="nav-download">Download Free</a>
-      </div>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">Free &amp; Open Source for Students</div>
-    <h1 class="animate">The <span class="gradient-text">Ultimate School Toolkit</span><br>for Students</h1>
-    <p class="animate delay-1">Track homework, manage grades, study with flashcards, get AI tutoring help, and stay on top of everything school throws at you.</p>
-    <div class="hero-buttons animate delay-2">
-      <a href="downloads/StudentPlanner.zip" download="StudentPlanner.zip" class="btn btn-primary" style="background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 6px 30px rgba(34,197,94,0.35);font-size:18px;padding:18px 40px;">
-        <span class="btn-icon" style="font-size:24px">&#11015;</span> Download for Windows
-      </a>
-      <a href="#features" class="btn btn-secondary">
-        <span class="btn-icon">&#9889;</span> See Features
-      </a>
-    </div>
-
-    <div class="hero-image animate delay-3">
-      <div class="app-preview">
-        <div class="preview-titlebar">
-          <div class="preview-dot red"></div>
-          <div class="preview-dot yellow"></div>
-          <div class="preview-dot green"></div>
-        </div>
-        <div class="preview-body">
-          <div class="preview-sidebar">
-            <div class="preview-nav-item active">&#9776; Dashboard</div>
-            <div class="preview-nav-item">&#9998; Homework</div>
-            <div class="preview-nav-item">&#9733; Grades</div>
-            <div class="preview-nav-item">&#127919; GPA Calc</div>
-            <div class="preview-nav-item">&#128197; Schedule</div>
-            <div class="preview-nav-item">&#9745; To-Do List</div>
-            <div class="preview-nav-item">&#128170; Exams</div>
-            <div class="preview-nav-item">&#127183; Flashcards</div>
-            <div class="preview-nav-item">&#128221; Notes</div>
-            <div class="preview-nav-item">&#9201; Study Timer</div>
-            <div class="preview-nav-item">&#128218; Study Tools</div>
-            <div class="preview-nav-item">&#129302; Ask Claude AI</div>
-          </div>
-          <div class="preview-content">
-            <h3>Dashboard</h3>
-            <div class="preview-grid">
-              <div class="preview-card-item">
-                <h4>GPA Overview</h4>
-                <div class="big-num">3.85</div>
-              </div>
-              <div class="preview-card-item">
-                <h4>Quick Stats</h4>
-                <div class="mini-list">
-                  5 Pending Tasks<br>
-                  12 Completed<br>
-                  1 Overdue
-                </div>
-              </div>
-              <div class="preview-card-item">
-                <h4>Upcoming Homework</h4>
-                <div class="mini-list">
-                  Math: Ch.5 Problems<br>
-                  English: Essay Draft<br>
-                  Science: Lab Report
-                </div>
-              </div>
-              <div class="preview-card-item">
-                <h4>Next Exam</h4>
-                <div class="big-num" style="font-size:24px;color:#ef4444">3 days</div>
-                <div class="mini-list">Chemistry Midterm</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1>The <span>Ultimate School Toolkit</span> for Students</h1>
+    <p>Homework tracker, grade calculator, study timer, flashcards, AI tutor, and more. All in one free app.</p>
   </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="section-label">Everything You Need</div>
-    <h2 class="section-title">Built for How Students Actually Work</h2>
-    <p class="section-subtitle">12 powerful tools in one app. No subscriptions, no accounts needed, everything saved locally on your computer.</p>
+  <!-- DOWNLOAD -->
+  <div class="download-box">
+    <a href="downloads/StudentPlanner.zip" download="StudentPlanner.zip" class="download-btn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download for Windows
+    </a>
+    <p class="download-sub">Free &bull; No account needed &bull; Works offline</p>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(59,130,246,0.1)">&#9998;</div>
+    <div class="steps-title">Setup in 3 steps</div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <strong>Download</strong>
+        <p>Click the green button. A ZIP file saves to your Downloads.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <strong>Unzip</strong>
+        <p>Right-click the ZIP, click "Extract All", then click "Extract".</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <strong>Open "Install &amp; Run"</strong>
+        <p>Double-click the file called <b>Install &amp; Run</b>. The app opens automatically. Use <b>Start</b> to reopen it next time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features-strip" id="features">
+    <h2>Everything in one app</h2>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon">&#9998;</div>
         <h3>Homework Tracker</h3>
-        <p>Add assignments with due dates, priority levels, and subjects. Filter by status and never miss a deadline again.</p>
+        <p>Due dates, priorities, subjects. Never miss a deadline.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(34,197,94,0.1)">&#9733;</div>
+      <div class="feat">
+        <div class="feat-icon">&#9733;</div>
         <h3>Grade Tracker</h3>
-        <p>Track grades for every class with categories like tests, quizzes, and projects. See your letter grade and percentage instantly.</p>
+        <p>Track tests, quizzes, projects. See your letter grade instantly.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(139,92,246,0.1)">&#127919;</div>
+      <div class="feat">
+        <div class="feat-icon">&#127919;</div>
         <h3>GPA Calculator</h3>
-        <p>Calculate your overall GPA automatically. Find out exactly what score you need on your next assignment to hit your goal.</p>
+        <p>Auto-calculates your GPA. See what you need to hit your goal.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(245,158,11,0.1)">&#128197;</div>
+      <div class="feat">
+        <div class="feat-icon">&#128197;</div>
         <h3>Class Schedule</h3>
-        <p>Visual weekly schedule grid showing all your classes, rooms, and times. See today's classes at a glance from the dashboard.</p>
+        <p>Weekly view with classes, rooms, and times.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(239,68,68,0.1)">&#128170;</div>
-        <h3>Exam Countdown</h3>
-        <p>Add upcoming exams with study topics. Color-coded urgency shows how close each exam is so you can prioritize.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(6,182,212,0.1)">&#127183;</div>
-        <h3>Flashcards</h3>
-        <p>Create decks with flip cards, shuffle them, and study right inside the app. No Quizlet account needed.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(236,72,153,0.1)">&#128221;</div>
-        <h3>Notes</h3>
-        <p>Full text editor for class notes. Create, edit, and organize notes by subject. Auto-saves as you type.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(16,185,129,0.1)">&#9201;</div>
+      <div class="feat">
+        <div class="feat-icon">&#9201;</div>
         <h3>Study Timer</h3>
-        <p>Pomodoro timer with presets (15, 25, 45, 60 min). Tracks your daily study time with a session log.</p>
+        <p>Pomodoro timer with session tracking.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(99,102,241,0.1)">&#9745;</div>
-        <h3>To-Do List</h3>
-        <p>Quick task manager with categories (school, personal, extracurricular). Filter active vs. completed tasks.</p>
+      <div class="feat">
+        <div class="feat-icon">&#127183;</div>
+        <h3>Flashcards</h3>
+        <p>Create decks, flip cards, shuffle and study.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#128221;</div>
+        <h3>Notes</h3>
+        <p>Full editor with auto-save. Organize by subject.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#128170;</div>
+        <h3>Exam Countdown</h3>
+        <p>Track upcoming exams with color-coded urgency.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">&#129302;</div>
+        <h3>Claude AI Tutor</h3>
+        <p>Ask questions, get explanations, study help built in.</p>
       </div>
     </div>
   </section>
 
   <!-- STUDY TOOLS -->
-  <section class="tools-section" id="tools">
-    <div class="tools-inner">
-      <div class="section-label">Integrated Study Resources</div>
-      <h2 class="section-title">Your Favorite Study Sites, One Click Away</h2>
-      <p class="section-subtitle">Quick-launch links to the best free study tools on the internet, organized by category.</p>
-
-      <div class="tools-logos">
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#4257b2">Q</div>
-          <span>Quizlet</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#14bf96">K</div>
-          <span>Khan Academy</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#dd1100">W</div>
-          <span>Wolfram Alpha</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#4caf50">D</div>
-          <span>Desmos</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#15c39a">G</div>
-          <span>Grammarly</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#4285f4">GS</div>
-          <span>Google Scholar</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#0056d2">C</div>
-          <span>Coursera</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#236fa1">A</div>
-          <span>Anki</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#f4d03f">S</div>
-          <span>SparkNotes</span>
-        </div>
-        <div class="tool-logo-card">
-          <div class="tool-logo-icon" style="background:#1db954">S</div>
-          <span>Spotify Focus</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLAUDE AI -->
-  <section class="ai-section" id="ai">
-    <div class="ai-card">
-      <div class="ai-info">
-        <div class="ai-badge">Powered by Claude</div>
-        <h3>Built-in AI Study Buddy</h3>
-        <p>Get instant help with homework, have concepts explained in simple terms, get quizzed on any topic, or ask for study tips.</p>
-        <p>Claude AI is built right into the app. Just add your API key and start chatting. Your key stays on your computer and is never shared.</p>
-      </div>
-      <div class="ai-visual">&#129302;</div>
-    </div>
-  </section>
-
-  <!-- DOWNLOAD -->
-  <section class="download-section" id="download">
-    <div class="download-card">
-      <h2>Ready to Ace Your Classes?</h2>
-      <p>Download Student Planner for free. No account needed, no ads, no subscriptions.</p>
-
-      <!-- BIG download button -->
-      <a href="downloads/StudentPlanner.zip" download="StudentPlanner.zip" class="big-download-btn" id="downloadBtn">
-        <span style="font-size:36px">&#11015;</span>
-        <span class="big-download-text">
-          <strong>Download for Windows</strong>
-          <small>StudentPlanner.zip &bull; Free &bull; No signup</small>
-        </span>
-      </a>
-
-      <!-- Super simple install steps -->
-      <div class="install-steps">
-        <h3>How to Install <span style="font-size:16px">(takes 1 minute)</span></h3>
-        <div class="steps-grid">
-          <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-info">
-              <strong>Click the green button above</strong>
-              <p>A ZIP file called StudentPlanner.zip will save to your Downloads folder</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-info">
-              <strong>Unzip it</strong>
-              <p>Right-click the ZIP &rarr; click <b>"Extract All"</b> &rarr; click <b>"Extract"</b></p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-info">
-              <strong>Double-click "Install &amp; Run"</strong>
-              <p>Open the folder and double-click the file called <b>"Install &amp; Run"</b>. That's it! The app opens automatically.</p>
-              <p style="margin-top:6px;font-size:13px;color:#64748b">First time only &mdash; it will ask you to install Node.js if you don't have it. After that, use <b>"Start"</b> to reopen the app anytime.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p class="system-req">Windows 10 or later &bull; Free forever &bull; No internet required (except AI chat)</p>
+  <section class="tools-row">
+    <h2>Built-in links to study tools</h2>
+    <div class="tools-flex">
+      <div class="tool-chip"><div class="tool-dot" style="background:#4257b2"></div> Quizlet</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#14bf96"></div> Khan Academy</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#dd1100"></div> Wolfram Alpha</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#4caf50"></div> Desmos</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#15c39a"></div> Grammarly</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#4285f4"></div> Google Scholar</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#0056d2"></div> Coursera</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#236fa1"></div> Anki</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#f4d03f"></div> SparkNotes</div>
+      <div class="tool-chip"><div class="tool-dot" style="background:#1db954"></div> Spotify Focus</div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-inner">
-      <span>Student Planner &copy; 2026. Free &amp; open source.</span>
-      <div class="footer-links">
-        <a href="#features">Features</a>
-        <a href="#tools">Study Tools</a>
-        <a href="#download">Download</a>
-        <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank">GitHub</a>
-      </div>
-    </div>
+    <p>Student Planner &copy; 2026 &bull; Free forever</p>
+    <p style="margin-top:8px">
+      <a href="https://github.com/drrahul1978-lgtm/studentplanner" target="_blank">GitHub</a>
+      <a href="#features">Features</a>
+    </p>
   </footer>
 
-  <!-- Scroll animations -->
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.feature-card, .tool-logo-card, .ai-card, .download-card').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Smooth scroll (skip download links)
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      if (a.hasAttribute('download')) return;
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  </script>
 </body>
 </html>
